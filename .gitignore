@@ -14,19 +14,26 @@
 # limitations under the License.
 # -----------------------------------------------------------------------------
 
-build/
+/build/
+/.gradle/
 
-.gradle/
+/trac-api/trac-packages/trac-js-web/node_modules/
+/trac-api/trac-packages/trac-js-web/build/
+/trac-api/trac-packages/trac-js-web/dist/
+/trac-api/trac-packages/trac-js-web/*.tgz
 
-.idea/.name
-.idea/workspace.xml
-.idea/misc.xml
-.idea/compiler.xml
-.idea/jarRepositories.xml
-.idea/gradle.xml
-.idea/modules.xml
-.idea/modules/
-.idea/libraries/
-.idea/shelf/
+out/
 
 
+/.idea/.name
+/.idea/workspace.xml
+/.idea/misc.xml
+/.idea/compiler.xml
+/.idea/jarRepositories.xml
+/.idea/gradle.xml
+/.idea/modules.xml
+/.idea/modules/
+/.idea/libraries/
+/.idea/shelf/
+
+**/.DS_Store
