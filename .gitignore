@@ -19,7 +19,8 @@
 
 /trac-api/trac-packages/trac-js-web/node_modules/
 /trac-api/trac-packages/trac-js-web/build/
-/trac-api/trac-packages/trac-js-web/dist/
+/trac-api/trac-packages/trac-js-web/umd/
+/trac-api/trac-packages/trac-js-web/trac.*
 /trac-api/trac-packages/trac-js-web/*.tgz
 
 out/
