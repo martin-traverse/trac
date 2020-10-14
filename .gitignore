@@ -17,11 +17,11 @@
 /build/
 /.gradle/
 
-/trac-api/trac-packages/trac-js-web/node_modules/
-/trac-api/trac-packages/trac-js-web/build/
-/trac-api/trac-packages/trac-js-web/umd/
-/trac-api/trac-packages/trac-js-web/trac.*
-/trac-api/trac-packages/trac-js-web/*.tgz
+/trac-api/packages/js/trac-web-api/node_modules/
+/trac-api/packages/js/trac-web-api/build/
+/trac-api/packages/js/trac-web-api/umd/
+/trac-api/packages/js/trac-web-api/trac.*
+/trac-api/packages/js/trac-web-api/*.tgz
 
 out/
 
