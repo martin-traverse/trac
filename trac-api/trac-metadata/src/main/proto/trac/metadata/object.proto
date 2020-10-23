@@ -21,6 +21,7 @@ option java_package = "com.accenture.trac.common.metadata";
 option java_multiple_files = true;
 option java_outer_classname = "ObjectProtoWrapper";  // Do not create a Java class called "Object"!
 
+import "google/protobuf/any.proto";
 import "trac/metadata/type.proto";
 import "trac/metadata/data.proto";
 import "trac/metadata/model.proto";
@@ -59,6 +60,71 @@ message ObjectHeader {
 }
 
 
+
+/**
+ * Hold data used purely for displaying an object in a client application.
+ *
+ * Any data that is purely related to displaying an object, such as layout
+ * and styling, can be stored in the object's display properties. TRAC puts no
+ * restriction on how display properties are used, applications are free to use
+ * nested structures of map and array values to describe more complex layouts.
+ *
+ * The TRAC engine itself does not use display properties, they will not be
+ * available to models at run time, to clients using the data API or to third-
+ * party systems accessing data through other methods of integration. For this
+ * reason, information such as labels and data field formats should be included
+ * in the core object model.
+ *
+ * Different applications may use different display properties even if they
+ * connected to the same instance of TRAC. Each application is free to create
+ * its own set of display properties, or to interpret properties created by
+ * another application. TRAC does not prevent applications writing display
+ * properties under the name of another application, although this is not
+ * recommended!
+ */
+message DisplayProperties {
+
+    /**
+     * Name of the application that generated these display properties.
+     *
+     * This field is provided so multiple applications can record their own
+     * display properties if they are accessing the same TRAC instance. For
+     * example, a generic workbench/admin tool may be used alongside a business UI
+     * built for a specific use case. Applications are free to use display info
+     * that was created by another tool.
+     *
+     * TRAC does not prevent applications writing display properties under the
+     * name of another application, although this is not recommended.
+     */
+    string applicationName = 1;
+
+    /**
+     * Version field to let applications change how they store display properties.
+     *
+     * Applications may change the way the store display properties between
+     * versions, in which case this field can be used to check compatibility.
+     * The structure used to store display properties can be thought of as a
+     * schema, with this field providing a schema version. Applications are free
+     * to use (or not use) this "display schema versioning" as they find useful.
+     */
+    int32 displayVersion = 2;
+
+    /**
+     * The display properties.
+     *
+     * TRAC puts no restriction on how display properties are used. Applications
+     * are free to use nested structures of map and array values to describe more
+     * complex layouts.
+     */
+    map <string, Value> property = 3;
+}
+
+
+// TODO: Structure and docs for custom props
+message CustomProperties {
+
+}
+
 /**
  * Object definitions are the core structural element of TRAC's metadata model.
  *
@@ -88,6 +154,8 @@ message ObjectHeader {
  * structural information in tags where their required structure is not supported
  * by TRAC's core object definitions.
  *
+ * TODO: Document display props, custom props and extensions
+ *
  * @see Tag
  * @see ObjectHeader
  */
@@ -103,4 +171,10 @@ message ObjectDefinition {
         FileDefinition file = 6;
         CustomDefinition custom = 7;
     }
+
+    // Extensions
+
+    repeated DisplayProperties display = 1000;
+    repeated CustomProperties properties = 1001;  // TODO: Find a good name that isn't "custom" (or rename custom def)
+    repeated google.protobuf.Any extension = 1002;
 }

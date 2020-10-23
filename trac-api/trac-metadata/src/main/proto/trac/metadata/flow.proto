@@ -59,72 +59,6 @@ message FlowEdge {
 }
 
 
-/**
- * Record display data for a flow.
- *
- * Any data that is purely related to displaying the flow can be stored in the
- * flow's display info. For example, layout of the nodes and edges, color
- * schemes, icons, styling etc. This does not include labels or business-
- * meaningful names, which are considered integral to the flow and should be
- * stored in the core definitions of nodes, inputs etc.
- *
- * TRAC does not describe the specific semantics of display data, rather this is
- * left up to individual applications. If multiple applications are built on the
- * same instance of TRAC they may choose to share display data or to each create
- * a separate set.
- */
-message FlowDisplayInfo {
-
-  /**
-   * Name of the application that generated this display info data.
-   *
-   * This field is provided so multiple applications can record their own
-   * display info if they are accessing the same TRAC instance. For example, a
-   * generic workbench/admin tool may be used alongside a business UI built for
-   * a specific use case. Applications are free to use display info that was
-   * created by another tool.
-   *
-   * TRAC does not prevent applications writing display info under the name of
-   * another application, although this is not recommended.
-   */
-  string applicationName = 1;
-
-  /**
-   * Version of the application that generated this display info data.
-   *
-   * Applications may change the way the store display data between versions, in
-   * which case this field can be used to check compatibility. Each application
-   * is responsible for its own versioning scheme.
-   */
-  int32 applicationVersion = 2;
-
-  /**
-   * Flow-level display attributes.
-   *
-   * A map of display attributes that apply to the whole flow, e.g. background
-   * color, scaling, transparency, flags to show/hide controls.
-   */
-  map<string, Value> flow = 3;
-
-  /**
-   * Per-node display attributes.
-   *
-   * A map where the key is node ID and the value is a map of node-level display
-   * attributes, e.g. x and y coordinates, shape, icon, color.
-   *
-   */
-  map<string, Value> node = 4;
-
-  /**
-   * Per-edge display attributes.
-   *
-   * A map where the key is the edge index and the value is a map of edge display
-   * attributes, e.g. line style, color, arrow shape
-   */
-  map<int32, Value> edge = 5;
-}
-
-
 message FlowDefinition {
 
   map<string, FlowNode> node = 1;
@@ -133,6 +67,4 @@ message FlowDefinition {
   map<string, ModelParameter> param = 3;
   map<string, TableDefinition> input = 4;
   map<string, TableDefinition> output = 5;
-
-  repeated FlowDisplayInfo displayInfo = 6;
 }
