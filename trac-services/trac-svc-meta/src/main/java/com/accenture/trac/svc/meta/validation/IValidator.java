@@ -16,7 +16,16 @@
 
 package com.accenture.trac.svc.meta.validation;
 
-public interface ValidationRecorder {
+import com.google.protobuf.Message;
 
-    void recordValidationError(String message);
+
+public interface IValidator {
+
+    IValidationContext newContext();
+
+    void validate(Message msg, IValidationContext ctx);
+    void validate(Message msg, Object data, IValidationContext ctx);
+
+    boolean check(IValidationContext ctx);
+    void checkAndThrow(IValidationContext ctx);
 }
