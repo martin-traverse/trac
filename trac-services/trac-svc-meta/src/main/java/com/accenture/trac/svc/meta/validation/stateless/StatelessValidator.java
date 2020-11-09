@@ -32,6 +32,8 @@ public class StatelessValidator extends BaseValidator {
     @Override
     protected boolean preValidation(Message msg, IValidationContext ctx, Object data) {
 
+        // Validate any child messages that are present before their parent
+
         var fields = msg.getDescriptorForType().getFields();
 
         for (var field : fields) {

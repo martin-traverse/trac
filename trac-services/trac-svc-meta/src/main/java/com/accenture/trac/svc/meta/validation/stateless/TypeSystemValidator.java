@@ -16,7 +16,8 @@
 
 package com.accenture.trac.svc.meta.validation.stateless;
 
-import com.accenture.trac.common.metadata.*;
+import com.accenture.trac.metadata.*;
+import com.accenture.trac.common.metadata.TypeSystem;
 import com.accenture.trac.svc.meta.validation.IValidationContext;
 import com.google.protobuf.Message;
 

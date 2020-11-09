@@ -16,9 +16,9 @@
 
 package com.accenture.trac.svc.meta.validation;
 
-import com.accenture.trac.common.metadata.BasicType;
-import com.accenture.trac.common.metadata.TypeDescriptor;
-import com.accenture.trac.common.metadata.Value;
+import com.accenture.trac.metadata.BasicType;
+import com.accenture.trac.metadata.TypeDescriptor;
+import com.accenture.trac.metadata.Value;
 import com.accenture.trac.svc.meta.validation.stateless.StatelessValidator;
 
 import org.junit.jupiter.api.*;

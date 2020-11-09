@@ -109,6 +109,11 @@ public class TypeSystem {
         return basicType;
     }
 
+    public static BasicType basicType(Value.ValueCase valueCase) {
+
+        return VALUE_CASE_MAPPING.getOrDefault(valueCase, BasicType.UNRECOGNIZED);
+    }
+
     public static TypeDescriptor descriptor(Class<?> clazz) {
 
         if (clazz == null)
